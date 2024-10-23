@@ -1,0 +1,73 @@
+@use "./src/sass/" as *;
+@import url("https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+body {
+  @include flex(column, center, center);
+  background-color: #1e1e1e;
+  letter-spacing: 2px;
+  font-family: $primary-font-family;
+  font-weight: bold;
+}
+
+.layout-container {
+  width: 375px;
+  height: 812px;
+  background-color: map-get($style-page-colors, "bkg");
+  @include flex(column, center, center);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .layout-main {
+    @include flex(column, center, center);
+    gap: 16px;
+  }
+
+  .layout-header {
+    @include flex(column, center, center);
+
+    h1 {
+      color: map-get($style-page-colors, "white");
+    }
+  }
+}
+
+.custom-textfield {
+    
+    .MuiSvgIcon-root {
+        color: map-get($style-page-colors, "labels");
+    }
+
+    .MuiInputBase-input {
+        color: map-get($style-page-colors, "labels");
+    }
+    
+  .MuiInputBase-root {
+    border: solid 1px #ffbd21;
+    width: 311px;
+    height: 62px;
+    /* @include flex(row, center, center);
+    margin: auto; */
+  }
+
+  label {
+    color: map-get($style-page-colors, "labels");
+    
+
+    &.MuiInputLabel-shrink {
+      background-color: map-get($style-page-colors, "labels");
+      color: map-get($style-page-colors, "bkg");
+      border-radius: 6px 6px 0 0;
+      margin-top: -12px;
+      margin-left: -15px;
+      padding: 3px;
+      letter-spacing: 2px;
+      font-family: $primary-font-family;
+      font-weight: bold;
+    }
+  }
+}
+
+.custom-input{
+    
+}

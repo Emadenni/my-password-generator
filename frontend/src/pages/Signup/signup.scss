@@ -1,0 +1,50 @@
+@use "./src/sass/" as *;
+
+.signup-title {
+  font-weight: bold;
+  font-size: 44px;
+}
+
+.signup-logo {
+  width: 76px;
+  height: 76px;
+}
+
+.signup-subtitle {
+  color: map-get($style-page-colors, "labels");
+  font-size: 20px;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+.layout-button {
+    width: 311px;
+    height: 62px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-family: $primary-font-family;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 220px;
+    margin-bottom: -100px;
+}
+
+.signup-container {
+    position: relative;
+}
+
+.login-button {
+    position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: solid 1px red;
+  color: red;
+  font-size: 12px;
+  padding: 5px 8px;
+    letter-spacing: 1px;
+    font-family: $primary-font-family;
+    
+    border-radius: 8px;
+}

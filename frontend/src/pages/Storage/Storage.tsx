@@ -3,8 +3,9 @@ import Layout from "../../components/Layout/Layout";
 import Logo from "../../assets/images/Logo.svg";
 import InputGroup from "../../components/inputGroup"; 
 import { useNavigate } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import InputField from "../../components/inputField";
+import { FileCopy } from '@mui/icons-material';
 
 export interface PasswordEntry {
   id: number;
@@ -55,13 +56,14 @@ const Storage: React.FC = () => {
         >
             <Box className="storage-container">
                 <InputGroup 
-            passwords={passwords}
-            onEdit={handleEdit}
-            onShowPassword={handleShowPassword}
-            groupClassName="input-group" toggleShowPassword={function (): void {
-              throw new Error("Function not implemented.");
-            } } showPassword={false}                />
-                <Box style={{ marginTop: '20px' }}>
+                    passwords={passwords}
+                    onEdit={handleEdit}
+                    onShowPassword={handleShowPassword}
+                    toggleShowPassword={toggleShowPassword}
+                    showPassword={showPassword} 
+                    groupClassName="input-group" 
+                />
+                <Box style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
                     <InputField
                         label="Password"
                         value={showPassword ? selectedPassword : "•".repeat(selectedPassword.length)}
@@ -69,6 +71,9 @@ const Storage: React.FC = () => {
                         type={showPassword ? "text" : "password"}
                         inputClassName="play-inside-input"
                     />
+                    <IconButton onClick={() => navigator.clipboard.writeText(selectedPassword)}>
+                        <FileCopy />
+                    </IconButton>
                 </Box>
             </Box>
         </Layout>

@@ -10,7 +10,7 @@ interface InputGroupProps {
     onShowPassword: (password: string) => void;
     toggleShowPassword: () => void;
     showPassword: boolean;
-    groupClassName?: string;
+    groupClassName?: string; 
 }
 
 const InputGroup: React.FC<InputGroupProps> = ({ passwords, onEdit, onShowPassword, toggleShowPassword, showPassword, groupClassName }) => {

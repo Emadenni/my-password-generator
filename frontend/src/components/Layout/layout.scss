@@ -83,13 +83,14 @@ body {
 .storage-container {
   @include flex(column, center, center);
   position: relative;
-  margin: 20px 0;
+  margin: 20px ;
+  width: 100%;
   
 }
 
 .input-group {
   border: solid 1px #ffbd21;
-  width: 80%;
+  width: 72%;
   border-radius: 6px;
   padding: 5px 0;
   div {

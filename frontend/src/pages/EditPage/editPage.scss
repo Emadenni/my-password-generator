@@ -1,1 +1,30 @@
 @use "./src/sass/" as *;
+
+#edit-header {
+    @include flex(row, center, center);
+    margin-right: 160px;
+    margin-bottom: 130px;
+    margin-top: -140px;
+}
+
+.edit-container {
+    @include flex(column, center, center);
+    margin-bottom: 55px;
+}
+
+.edit-subtitle {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 68px;
+    margin-top: -55px;
+    text-align: center;
+}
+
+.password-rules {
+    color: #FFBD21;
+    font-size: 10px;
+
+    span {
+        color: #FF4910;
+    }
+}

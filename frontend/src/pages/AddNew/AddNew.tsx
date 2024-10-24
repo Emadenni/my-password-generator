@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import InputField from "../../components/inputField";
 import generatePassword from "generate-password";
 import Layout from "../../components/Layout/Layout";
@@ -25,7 +25,7 @@ const AddNew: React.FC<Props> = () => {
   };
 
   const handleSubmit = () => {
-    console.log("Invio", { url, username, password });
+    console.log("Submitting", { url, username, password });
   };
 
   const handleBack = () => {};
@@ -40,7 +40,9 @@ const AddNew: React.FC<Props> = () => {
       titleClassName="storage-title"
     >
       <Box className="add-new-container">
-        <h2 className="addNew-subtitle">NEW SECURE <br /> CREDENTIALS</h2>
+        <h2 className="addNew-subtitle">
+          NEW SECURE <br /> CREDENTIALS
+        </h2>
         <InputField label="URL" value={url} onChange={(e) => setUrl(e.target.value)} inputClassName="url-input" />
         <InputField
           label="Username"
@@ -55,6 +57,10 @@ const AddNew: React.FC<Props> = () => {
           onGenerate={generateRandomPassword}
           inputClassName="password-input"
         />
+
+        <Typography variant="body2" sx={{ fontSize: "1.2rem", fontWeight: 500 }} className="password-rules">
+          # @ 123 Aa <span>pwnd</span>
+        </Typography>
       </Box>
     </Layout>
   );

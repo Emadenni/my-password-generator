@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
-import { Visibility, VisibilityOff, ContentCopy, Refresh } from '@mui/icons-material';
+import { Visibility, VisibilityOff, ContentCopy, Refresh, Edit } from '@mui/icons-material'; 
 
 interface InputFieldProps {
     label: string;
@@ -10,6 +10,9 @@ interface InputFieldProps {
     required?: boolean;
     onCopy?: () => void;
     onGenerate?: () => void;
+    onEdit?: () => void;  
+    inputClassName?: string;  
+    onClick?: ()=> void;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -19,7 +22,10 @@ const InputField: React.FC<InputFieldProps> = ({
     onChange, 
     required = false,
     onCopy, 
-    onGenerate
+    onGenerate,
+    onEdit,  
+    inputClassName,
+    onClick 
 }) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -29,37 +35,41 @@ const InputField: React.FC<InputFieldProps> = ({
 
     return (
         <TextField 
-            className="custom-textfield"
+            className={`custom-textfield ${inputClassName || ''}`}  
             label={label}
-            type={showPassword ? 'text' : type} 
+            type={showPassword && type === 'password' ? 'text' : type} 
             variant='outlined'
             fullWidth
             margin='normal'
             value={value}
             onChange={onChange}
             required={required}
-            slotProps={{
-                input: {
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            {type === 'password' && (
-                                <IconButton onClick={handleToggleShowPassword} edge="end">
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            )}
-                            {onCopy && (
-                                <IconButton onClick={onCopy} edge="end">
-                                    <ContentCopy />
-                                </IconButton>
-                            )}
-                            {onGenerate && (
-                                <IconButton onClick={onGenerate} edge="end">
-                                    <Refresh />
-                                </IconButton>
-                            )}
-                        </InputAdornment>
-                    )
-                }
+            onClick={onClick}
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment position="end">
+                        {type === 'password' && (
+                            <IconButton onClick={handleToggleShowPassword} edge="end">
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        )}
+                        {onCopy && (
+                            <IconButton onClick={onCopy} edge="end">
+                                <ContentCopy />
+                            </IconButton>
+                        )}
+                        {onGenerate && (
+                            <IconButton onClick={onGenerate} edge="end">
+                                <Refresh />
+                            </IconButton>
+                        )}
+                        {onEdit && (  
+                            <IconButton onClick={onEdit} edge="end">
+                                <Edit />
+                            </IconButton>
+                        )}
+                    </InputAdornment>
+                ),
             }}
         />
     );

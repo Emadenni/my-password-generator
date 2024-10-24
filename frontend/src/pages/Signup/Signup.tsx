@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import InputField from "../../components/inputField";
 import Layout from "../../components/Layout/Layout"; 
 import Logo from "../../assets/images/Logo.svg";
@@ -23,10 +24,10 @@ const Signup: React.FC = () => {
 
   return (
     <div className="signup-container">
-      <button className="login-button">Login</button>
+      <Link to="/login" ><button className="login-button">Login</button></Link>
     <Layout
       logo={<img src={Logo} alt="Logo" className="signup-logo" />} 
-      title="SIGN UP" 
+      title="MY PG" 
       titleClassName="signup-title" 
       buttonLabel="SIGN UP" 
       onButtonClick={handleSignup}
@@ -39,6 +40,7 @@ const Signup: React.FC = () => {
         value={username}
         onChange={handleUsernameChange}
         required
+        inputClassName="signup-input"
       />
       <InputField
         label="Password"
@@ -46,6 +48,7 @@ const Signup: React.FC = () => {
         value={password}
         onChange={handlePasswordChange}
         required
+        inputClassName="signup-input"
       />
     </Layout>
     </div>

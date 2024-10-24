@@ -1,1 +1,28 @@
 @use "./src/sass/" as *;
+
+.login-container {
+    position: relative;
+  }
+  
+  .signup-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: solid 1px red;
+    color: red;
+    font-size: 12px;
+    padding: 5px 8px;
+    letter-spacing: 2px;
+    font-family: $primary-font-family;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .login-subtitle {
+    color: map-get($style-page-colors, "labels");
+    font-size: 20px;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 30px;
+  }

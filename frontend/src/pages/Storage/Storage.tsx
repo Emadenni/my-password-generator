@@ -3,9 +3,9 @@ import Layout from "../../components/Layout/Layout";
 import Logo from "../../assets/images/Logo.svg";
 import InputGroup from "../../components/inputGroup"; 
 import { useNavigate } from "react-router-dom";
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import InputField from "../../components/inputField";
-import { FileCopy } from '@mui/icons-material';
+import "./storage.scss";
 
 export interface PasswordEntry {
   id: number;
@@ -20,7 +20,7 @@ const Storage: React.FC = () => {
     const navigate = useNavigate();
 
     const handleNewMyPG = () => {
-        navigate("/create");
+        navigate("/addNew");
     };
 
     const handleEdit = (id: number) => {
@@ -48,7 +48,7 @@ const Storage: React.FC = () => {
     return (
         <Layout
             logo={<img src={Logo} alt="Logo" className="storage-logo" />}
-            title="MY-PG Storage"
+            title="MY-PG"
             headerId="storage-header"
             titleClassName="storage-title"
             buttonLabel="NEW MY-PG"
@@ -63,17 +63,14 @@ const Storage: React.FC = () => {
                     showPassword={showPassword} 
                     groupClassName="input-group" 
                 />
-                <Box style={{ marginTop: '20px', display: 'flex', alignItems: 'center' }}>
+                <Box className="external-box">
                     <InputField
-                        label="Password"
+                        label="SECURED PASSWORD"
                         value={showPassword ? selectedPassword : "•".repeat(selectedPassword.length)}
                         onChange={() => {}} 
-                        type={showPassword ? "text" : "password"}
-                        inputClassName="play-inside-input"
+                        onCopy={() => navigator.clipboard.writeText(selectedPassword)}
+                        inputClassName="passStored-input"
                     />
-                    <IconButton onClick={() => navigator.clipboard.writeText(selectedPassword)}>
-                        <FileCopy />
-                    </IconButton>
                 </Box>
             </Box>
         </Layout>

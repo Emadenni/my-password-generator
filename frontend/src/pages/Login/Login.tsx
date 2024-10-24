@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import InputField from "../../components/inputField";
 import Layout from "../../components/Layout/Layout"; 
 import Logo from "../../assets/images/Logo.svg";
+import { useNavigate } from "react-router-dom";
 import "./login.scss"
+
 
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -19,8 +22,7 @@ const Login: React.FC = () => {
   };
 
   const handleLogin = () => {
-    console.log('Username:', username);
-    console.log('Password:', password);
+    navigate("/storage");
   };
 
   return (

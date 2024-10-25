@@ -1,7 +1,5 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "../src/App";
 import Signup from "./pages/Signup/Signup";
 import Storage  from "./pages/Storage/Storage";
 import AddNew  from "./pages/AddNew/AddNew";

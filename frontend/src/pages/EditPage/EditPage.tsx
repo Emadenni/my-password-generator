@@ -24,10 +24,6 @@ const Edit: React.FC<Props> = () => {
     setPassword(password);
   };
 
-  const handleSubmit = () => {
-    console.log("Submitting", { url, username, password });
-  };
-
   const handleBack = () => {};
 
   return (

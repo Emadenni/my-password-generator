@@ -3,7 +3,7 @@ name: Deploy Frontend to S3 (Dev)
 on:
   push:
     branches:
-      - '*'
+      - dev
     paths:
     - "frontend/**"
     - ".github/workflows/dev_deploy.yml"

@@ -39,3 +39,7 @@ jobs:
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --follow-symlinks --delete
+
+      - name: Verify build output
+        run: ls -la dist
+  

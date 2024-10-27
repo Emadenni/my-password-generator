@@ -14,16 +14,21 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.5",
     "@mui/material": "^6.1.5",
+    "bcryptjs": "^2.4.3",
+    "crypto-js": "^4.2.0",
     "generate-password": "^1.7.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
-    "sass": "^1.80.3"
+    "sass": "^1.80.3",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.3",
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",

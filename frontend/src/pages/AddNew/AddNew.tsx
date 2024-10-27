@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import InputField from "../../components/inputField";
-import generatePassword from "generate-password";
+import { v4 as uuidv4 } from "uuid";
 import Layout from "../../components/Layout/Layout";
 import Logo from "../../assets/images/Logo.svg";
+import InputField from "../../components/inputField";
 import "./addNew.scss";
 
 type Props = {};
@@ -14,14 +14,27 @@ const AddNew: React.FC<Props> = () => {
   const [password, setPassword] = useState("");
 
   const generateRandomPassword = () => {
-    const password = generatePassword.generate({
-      length: 12,
-      numbers: true,
-      symbols: true,
-      uppercase: true,
-      lowercase: true,
-    });
-    setPassword(password);
+    const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+    const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const allChars = specialChars + upperChars + lowerChars + numbers;
+
+    let newPassword = "";
+    for (let i = 0; i < 12; i++) {
+      const randomIndex = Math.floor(Math.random() * allChars.length);
+      newPassword += allChars[randomIndex];
+    }
+
+    // Garantisce che la password contenga almeno un carattere di ciascun tipo
+    newPassword =
+      specialChars[Math.floor(Math.random() * specialChars.length)] +
+      upperChars[Math.floor(Math.random() * upperChars.length)] +
+      lowerChars[Math.floor(Math.random() * lowerChars.length)] +
+      numbers[Math.floor(Math.random() * numbers.length)] +
+      newPassword.slice(4);
+
+    setPassword(newPassword);
   };
 
   const handleBack = () => {};
@@ -39,7 +52,12 @@ const AddNew: React.FC<Props> = () => {
         <h2 className="addNew-subtitle">
           NEW SECURE <br /> CREDENTIALS
         </h2>
-        <InputField label="URL" value={url} onChange={(e) => setUrl(e.target.value)} inputClassName="url-input" />
+        <InputField
+          label="URL"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          inputClassName="url-input"
+        />
         <InputField
           label="Username"
           value={username}
@@ -53,7 +71,6 @@ const AddNew: React.FC<Props> = () => {
           onGenerate={generateRandomPassword}
           inputClassName="password-input"
         />
-
         <Typography variant="body2" sx={{ fontSize: "1.2rem", fontWeight: 500 }} className="password-rules">
           # @ 123 Aa <span>pwnd</span>
         </Typography>

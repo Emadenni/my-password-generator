@@ -1,0 +1,100 @@
+org: emanuelejs23
+service: my-password-generator
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:AWS_REGION}
+  iam:
+    role: ${env:IAM_ROLE_ARN}
+  environment:
+    MY_PG_USERS_TABLE: ${env:MY_PG_USERS_TABLE}
+    PASSWORDS_TABLE: ${env:PASSWORDS_TABLE}
+    
+resources:
+  Resources:
+    MyPGUsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${env:MY_PG_USERS_TABLE}MY_PG_USERS_TABLE
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        GlobalSecondaryIndexes:
+          - IndexName: UsernameIndex
+            KeySchema:
+              - AttributeName: username
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+
+    PasswordsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${env:PASSWORDS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: passwordId
+            AttributeType: S
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: passwordId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        GlobalSecondaryIndexes:
+          - IndexName: UserIdIndex
+            KeySchema:
+              - AttributeName: userId
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+
+functions:
+  createUser:
+    handler: functions/users/createUser/index.handler
+    events:
+      - httpApi:
+          path: /users
+          method: post
+
+  loginUser:
+    handler: functions/loginUser/index.handler
+    events:
+      - httpApi:
+          path: /login
+          method: post
+
+  savePassword:
+    handler: functions/savePassword/index.handler
+    events:
+      - http:
+          path: passwords
+          method: post
+          cors: true
+
+  getPassword:
+    handler: functions/getPassword/index.handler
+    events:
+      - http:
+          path: passwords
+          method: get
+          cors: true
+
+  updatePassword:
+    handler: functions/updatePassword/index.handler
+    events:
+      - http:
+          path: passwords/{passwordId}
+          method: put
+          cors: true
+
+
+package:
+  individually: true
